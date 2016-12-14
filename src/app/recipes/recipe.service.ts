@@ -1,30 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from './recipe';
-import { Ingridient } from '../shared/ingridient'
+import { Ingredient } from '../shared/ingredient'
 
 @Injectable()
 export class RecipeService {
   private recipes: Recipe[] = [
     new Recipe("Coliflower", "Colifolower Pie", "http://nutrawiki.org/wp-content/uploads/2015/09/Cauliflower.jpg", [
-        new Ingridient("coliflower", 3),
-        new Ingridient("Sugar", 5),
-        new Ingridient("Milk", 2)
+        new Ingredient("coliflower", 3),
+        new Ingredient("Sugar", 5),
+        new Ingredient("Milk", 2)
     ]),
     new Recipe("Tomaquets", "Tomaquet i Mozzarella", "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg", [
-        new Ingridient("Tomato", 12),
-        new Ingridient("Mozzarella", 7),
-        new Ingridient("Salt", 12)
+        new Ingredient("Tomato", 12),
+        new Ingredient("Mozzarella", 7),
+        new Ingredient("Salt", 12)
     ]),
-    new Recipe("Polo Con Patatas", "Pollo con patatas, i mes", "https://rsbackend.blob.core.windows.net/product/Pollo%20allo%20spiedo_8d008ce39178621.jpg", [
-        new Ingridient("Pollo", 1),
-        new Ingridient("Patatas", 12),
-        new Ingridient("Salt", 4),
-        new Ingridient("Oil", 1)
+    new Recipe("Pollo Con Patatas", "Pollo con patatas, i mes", "https://rsbackend.blob.core.windows.net/product/Pollo%20allo%20spiedo_8d008ce39178621.jpg", [
+        new Ingredient("Pollo", 1),
+        new Ingredient("Patatas", 12),
+        new Ingredient("Salt", 4),
+        new Ingredient("Oil", 1)
     ])
   ];
   constructor() { }
 
-  getRecipies() {
+  getRecipes() {
     return this.recipes;
   }
 
@@ -33,6 +33,14 @@ export class RecipeService {
   }
   deleteRecipe(recipe: Recipe) {
     this.recipes.splice(this.recipes.indexOf(recipe),1);
+  }
+  
+  addRecipe(recipe: Recipe){
+    this.recipes.push(recipe);
+  }
+  
+  editRecipe(oldRecipe: Recipe, newRecipe: Recipe){
+    this.recipes[this.recipes.indexOf(oldRecipe)]=newRecipe;
   }
 
 }

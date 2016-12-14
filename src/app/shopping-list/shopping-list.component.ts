@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Ingridient} from "../shared/ingridient";
+import {Ingredient} from "../shared/ingredient";
 import {ShoppingListService} from "./shopping-list.service";
 
 @Component({
@@ -7,7 +7,7 @@ import {ShoppingListService} from "./shopping-list.service";
   templateUrl: './shopping-list.component.html'
 })
 export class ShoppingListComponent implements OnInit {
-  items: Ingridient[] = [];
+  items: Ingredient[] = [];
 
   constructor(private sls: ShoppingListService) { }
 

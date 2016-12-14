@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Ingridient } from '../shared/ingridient'
+import { Ingredient } from '../shared/ingredient'
 
 @Injectable()
 export class ShoppingListService {
-  private items: Ingridient[] = []
+  private items: Ingredient[] = []
     
   constructor() { }
 
@@ -11,17 +11,9 @@ export class ShoppingListService {
     return this.items;
   }
 
-  addItems(items: Ingridient[]) {
+  addItems(items: Ingredient[]) {
     // Equivalent to loop to items and push them to this.items
     Array.prototype.push.apply(this.items, items);
   }
-
-/*  items: Ingridient[] = [
-    new Ingridient("coliflower", 3),
-    new Ingridient("pollo", 5),
-    new Ingridient("queso", 2),
-    new Ingridient("tomato", 12)
-  ];
-*/
 
 }

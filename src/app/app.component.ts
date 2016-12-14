@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, style } from '@angular/core';
 
 @Component({
   selector: 'rb-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html'  
 })
 export class AppComponent {
 }
