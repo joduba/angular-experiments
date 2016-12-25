@@ -1,20 +1,20 @@
-import { EventEmitter } from '@angular/common/src/facade/async';
-import { Headers, Http, Response } from '@angular/http';
-import { Injectable } from '@angular/core';
-import { Recipe } from './recipe';
-import { Ingredient } from '../shared/ingredient'
-import 'rxjs/Rx'
+import { Injectable, EventEmitter } from '@angular/core';
+import { Headers, Http, Response } from "@angular/http";
+import 'rxjs/Rx';
+
+import { Recipe } from "./recipe";
+import { Ingredient } from "../shared";
 
 @Injectable()
 export class RecipeService {
-  recipesChange = new EventEmitter<Recipe[]>();
-
-  private recipes: Recipe[] = [
+  recipesChanged = new EventEmitter<Recipe[]>();
+  
+   private recipes: Recipe[] = [
     new Recipe("Coliflower", "Colifolower Pie", "http://nutrawiki.org/wp-content/uploads/2015/09/Cauliflower.jpg", [
       new Ingredient("coliflower", 3),
       new Ingredient("Sugar", 5),
       new Ingredient("Milk", 2)
-    ]),
+     ]),
     new Recipe("Tomaquets", "Tomaquet i Mozzarella", "https://upload.wikimedia.org/wikipedia/commons/8/88/Bright_red_tomato_and_cross_section02.jpg", [
       new Ingredient("Tomato", 12),
       new Ingredient("Mozzarella", 7),
@@ -26,8 +26,9 @@ export class RecipeService {
       new Ingredient("Salt", 4),
       new Ingredient("Oil", 1)
     ])
-  ];
-  constructor(private http: Http) { }
+   ];
+
+  constructor(private http: Http) {}
 
   getRecipes() {
     return this.recipes;
@@ -36,6 +37,7 @@ export class RecipeService {
   getRecipe(id: number) {
     return this.recipes[id];
   }
+
   deleteRecipe(recipe: Recipe) {
     this.recipes.splice(this.recipes.indexOf(recipe), 1);
   }
@@ -48,21 +50,23 @@ export class RecipeService {
     this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
   }
 
-  storeDate() {
+  storeData() {
     const body = JSON.stringify(this.recipes);
     const headers = new Headers({
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     });
-    return this.http.put('https://recipe-book-dc12d.firebaseio.com/recipes.json', body, { headers: headers })
+    return this.http.put('https://recipe-book-dc12d.firebaseio.com/recipes.json', body, {headers: headers});
   }
+
   fetchData() {
     return this.http.get('https://recipe-book-dc12d.firebaseio.com/recipes.json')
       .map((response: Response) => response.json())
       .subscribe(
-      (data: Recipe[]) => {
-        this.recipes = data;
-        this.recipesChange.emit(this.recipes);
-      }
+        (data: Recipe[]) => {
+          this.recipes = data;
+          this.recipesChanged.emit(this.recipes);
+        }
       );
   }
+
 }
