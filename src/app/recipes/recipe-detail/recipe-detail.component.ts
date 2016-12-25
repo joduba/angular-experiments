@@ -9,7 +9,7 @@ import { RecipeService } from "../recipe.service";
 @Component({
 
   selector: 'rb-recipe-detail',
-  templateUrl: 'recipe-detail.component.html'
+  templateUrl: './recipe-detail.component.html'
 })
 export class RecipeDetailComponent implements OnInit, OnDestroy {
   selectedRecipe: Recipe;

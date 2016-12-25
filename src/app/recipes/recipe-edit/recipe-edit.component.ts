@@ -14,7 +14,7 @@ import { Recipe } from "../recipe";
 
 @Component({
   selector: 'rb-recipe-edit',
-  templateUrl: 'recipe-edit.component.html',
+  templateUrl: './recipe-edit.component.html',
   styles: []
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {

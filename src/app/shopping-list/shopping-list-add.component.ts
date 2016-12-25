@@ -5,7 +5,7 @@ import { ShoppingListService } from "./shopping-list.service";
 
 @Component({
   selector: 'rb-shopping-list-add',
-  templateUrl: 'shopping-list-add.component.html'
+  templateUrl: './shopping-list-add.component.html'
 })
 export class ShoppingListAddComponent implements OnChanges {
   @Input() item: Ingredient;
