@@ -1,13 +1,13 @@
-import { EventEmitter } from '@angular/common/src/facade/async';
-import { Headers, Http, Response } from '@angular/http';
-import { Injectable } from '@angular/core';
-import { Recipe } from './recipe';
-import { Ingredient } from '../shared/ingredient'
-import 'rxjs/Rx'
+import { Injectable, EventEmitter } from '@angular/core';
+import { Headers, Http, Response } from "@angular/http";
+import 'rxjs/Rx';
+
+import { Recipe } from "./recipe";
+import { Ingredient } from "../shared";
 
 @Injectable()
 export class RecipeService {
-  recipesChange = new EventEmitter<Recipe[]>();
+  recipesChanged = new EventEmitter<Recipe[]>();
 
   private recipes: Recipe[] = [
     new Recipe("Coliflower", "Colifolower Pie", "http://nutrawiki.org/wp-content/uploads/2015/09/Cauliflower.jpg", [
@@ -27,6 +27,7 @@ export class RecipeService {
       new Ingredient("Oil", 1)
     ])
   ];
+
   constructor(private http: Http) { }
 
   getRecipes() {
@@ -36,6 +37,7 @@ export class RecipeService {
   getRecipe(id: number) {
     return this.recipes[id];
   }
+
   deleteRecipe(recipe: Recipe) {
     this.recipes.splice(this.recipes.indexOf(recipe), 1);
   }
@@ -48,21 +50,23 @@ export class RecipeService {
     this.recipes[this.recipes.indexOf(oldRecipe)] = newRecipe;
   }
 
-  storeDate() {
+  storeData() {
     const body = JSON.stringify(this.recipes);
     const headers = new Headers({
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     });
-    return this.http.put('https://recipe-book-dc12d.firebaseio.com/recipes.json', body, { headers: headers })
+    return this.http.put('https://recipe-book-dc12d.firebaseio.com/recipes.json', body, { headers: headers });
   }
+
   fetchData() {
     return this.http.get('https://recipe-book-dc12d.firebaseio.com/recipes.json')
       .map((response: Response) => response.json())
       .subscribe(
       (data: Recipe[]) => {
         this.recipes = data;
-        this.recipesChange.emit(this.recipes);
+        this.recipesChanged.emit(this.recipes);
       }
       );
   }
+
 }
