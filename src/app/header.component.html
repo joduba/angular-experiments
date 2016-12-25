@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a class="navbar-brand" [routerLink]="['/']">Recipe Book</a>
+       <a class="navbar-brand" [routerLink]="['/']">Recipe Book</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -13,14 +13,11 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" rbDropdown>
-          <a
-            class="dropdown-toggle"
-            role="button"
-            aria-haspopup="true"
+          <a class="dropdown-toggle" role="button" aria-haspopup="true" 
             aria-expanded="false">Recipe Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a (click)="onStore()" style="cursor: pointer;">Store Recipes</a></li>
-            <li><a (click)="onFetch()" style="cursor: pointer;">Retrieve Recipes</a></li>
+            <li><a (click)="onFetch()" style="cursor: pointer;">Retrive Recipes</a></li>
           </ul>
         </li>
       </ul>
